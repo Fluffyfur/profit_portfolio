@@ -13,4 +13,5 @@ class InfoService extends ChangeNotifier {
     infoList.add(info);
     notifyListeners();
   }
-}
+} 
+//
