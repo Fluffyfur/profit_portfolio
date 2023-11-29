@@ -55,7 +55,10 @@ class _ResumeFormState extends State<ResumeForm> {
       body: Column(
         children: [
           Row(
-            children: [Text('생년월일'), TextField()],
+            children: [
+              Text('생년월일'),
+              TextField(),
+            ],
           )
         ],
       ),
