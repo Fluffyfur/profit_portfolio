@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'info.dart';
 
 class InfoService extends ChangeNotifier {
-  List<Info> infoList = [];
+  Map<String, Info> infoMap = {};
 
   createMemo({
-    required String birthdate,
+    required String birthyyyy,
+    required String birthmm,
+    required String birthdd,
   }) {
+    String key = "$birthyyyy$birthmm$birthdd";
     Info info = Info(
-      birthdate: birthdate,
+      birthyyyy: birthyyyy,
+      birthmm: birthmm,
+      birthdd: birthdd,
     );
-    infoList.add(info);
+    infoMap[key] = info;
     notifyListeners();
   }
-} 
-//
+}

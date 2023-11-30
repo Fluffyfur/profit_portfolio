@@ -1,8 +1,12 @@
 class Info {
   Info({
-    required this.birthdate,
+    required this.birthyyyy,
+    required this.birthmm,
+    required this.birthdd,
   });
 
-  String birthdate;
+  String? birthyyyy;
+  String? birthmm;
+  String? birthdd;
 }
 //

@@ -55,11 +55,40 @@ class _ResumeFormState extends State<ResumeForm> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Text('생년월일'),
-              TextField(),
-            ],
+          Container(
+            width: double.infinity,
+            child: Row(
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "YYYY",
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Text("년"),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "MM",
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Text("월"),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "DD",
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Text("일"),
+                TextButton(onPressed: () {}, child: Text('저장'))
+              ],
+            ),
           )
         ],
       ),
