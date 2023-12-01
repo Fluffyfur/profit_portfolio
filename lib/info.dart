@@ -5,8 +5,8 @@ class Info {
     required this.birthdd,
   });
 
-  String? birthyyyy;
-  String? birthmm;
-  String? birthdd;
+  int? birthyyyy;
+  int? birthmm;
+  int? birthdd;
 }
 //

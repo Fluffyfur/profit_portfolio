@@ -5,9 +5,9 @@ class InfoService extends ChangeNotifier {
   List<Info> infoList = [];
 
   createMemo({
-    required String birthyyyy,
-    required String birthmm,
-    required String birthdd,
+    required int birthyyyy,
+    required int birthmm,
+    required int birthdd,
   }) {
     Info info = Info(
       birthyyyy: birthyyyy,
