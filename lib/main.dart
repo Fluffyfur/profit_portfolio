@@ -47,6 +47,7 @@ class _ResumeFormState extends State<ResumeForm> {
   Widget build(BuildContext context) {
     return Consumer<InfoService>(builder: (context, infoService, child) {
       Map<String, Info> infoMap = infoService.infoMap;
+      int? birthYear = infoService.birthYear;
 
       return Scaffold(
         appBar: AppBar(
@@ -69,7 +70,7 @@ class _ResumeFormState extends State<ResumeForm> {
                     controller: _birthController,
                     onChanged: (value) {},
                     decoration: InputDecoration(
-                      labelText: infoMap['$birthyyyy'],
+                      labelText: infoService.birthYear,
                       labelStyle: TextStyle(
                         color: Colors.grey,
                       ),
@@ -104,35 +105,3 @@ class _ResumeFormState extends State<ResumeForm> {
     });
   }
 }
-
-class InfoService extends ChangeNotifier {
-  Map<String, Info> infoMap = {};
-
-  createInfo({
-    required String? birthyyyy,
-    required String? birthmm,
-    required String? birthdd,
-  }) {
-    String key = "$birthyyyy$birthmm$birthdd";
-    Info info = Info(
-      birthyyyy: birthyyyy,
-      birthmm: birthmm,
-      birthdd: birthdd,
-    );
-    infoMap[key] = info;
-    notifyListeners();
-  }
-}
-
-class Info {
-  Info({
-    required this.birthyyyy,
-    required this.birthmm,
-    required this.birthdd,
-  });
-
-  String? birthyyyy;
-  String? birthmm;
-  String? birthdd;
-}
-//

@@ -3,6 +3,7 @@ import 'info.dart';
 
 class InfoService extends ChangeNotifier {
   Map<String, Info> infoMap = {};
+  int? birthYear;
 
   createMemo({
     required int birthyyyy,
@@ -17,6 +18,8 @@ class InfoService extends ChangeNotifier {
     );
 
     infoMap[key] = info;
+    birthYear = birthyyyy; // 출생 연도를 별도로 설정
+    notifyListeners();
     notifyListeners();
   }
 
