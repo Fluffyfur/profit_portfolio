@@ -45,7 +45,9 @@ class _ResumeFormState extends State<ResumeForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<InfoService>(builder: (context, infoservice, child) {
+    return Consumer<InfoService>(builder: (context, infoService, child) {
+      Map<String, Info> infoMap = infoService.infoMap;
+
       return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -67,7 +69,7 @@ class _ResumeFormState extends State<ResumeForm> {
                     controller: _birthController,
                     onChanged: (value) {},
                     decoration: InputDecoration(
-                      labelText: 'YYYY',
+                      labelText: infoMap['$birthyyyy'],
                       labelStyle: TextStyle(
                         color: Colors.grey,
                       ),
