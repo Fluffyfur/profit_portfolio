@@ -23,5 +23,5 @@ class InfoService extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 다른 유틸리티 메서드나 업데이트 메서드 등도 추가 가능
+  // 다른 유틸리티 메서드나 업데이트 메서드 등도 추가쌉가능
 }
