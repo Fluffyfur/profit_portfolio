@@ -23,7 +23,6 @@ class InfoService extends ChangeNotifier {
     birthYear = birthyyyy;
     birthMonth = birthmm;
     birthDate = birthdd;
-    // 출생 연도를 별도로 설정
     notifyListeners();
     notifyListeners();
   }

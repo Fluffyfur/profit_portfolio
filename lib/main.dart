@@ -51,8 +51,8 @@ class _ResumeFormState extends State<ResumeForm> {
     return Consumer<InfoService>(builder: (context, infoService, child) {
       Map<String, Info> infoMap = infoService.infoMap;
       String? birthYear = infoService.birthYear;
-      String? birthMonth = infoService.birthYear;
-      String? birthDate = infoService.birthYear;
+      String? birthMonth = infoService.birthMonth;
+      String? birthDate = infoService.birthDate;
 
       return Scaffold(
         appBar: AppBar(
@@ -65,46 +65,21 @@ class _ResumeFormState extends State<ResumeForm> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Row(
           children: [
-            Container(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  TextField(
-                    controller: birthyearController,
-                    onChanged: (value) {},
-                    decoration: InputDecoration(
-                      labelText: 'yyyy',
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
+            Flexible(
+              child: TextField(
+                controller: birthyearController,
+                //onChanged: (value) {},
+                decoration: InputDecoration(
+                  labelText: 'yyyy',
+                  labelStyle: TextStyle(
+                    color: Colors.grey,
                   ),
-                  Text("년"),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "MM",
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  Text("월"),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "DD",
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  Text("일"),
-                  TextButton(onPressed: () {}, child: Text('저장'))
-                ],
+                ),
               ),
-            )
+            ),
+            Text('년')
           ],
         ),
       );
