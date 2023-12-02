@@ -5,9 +5,9 @@ class Info {
     required this.birthdd,
   });
 
-  int? birthyyyy;
-  int? birthmm;
-  int? birthdd;
+  String? birthyyyy;
+  String? birthmm;
+  String? birthdd;
 
   Map<String, dynamic> toMap() {
     return {

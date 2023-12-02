@@ -3,12 +3,14 @@ import 'info.dart';
 
 class InfoService extends ChangeNotifier {
   Map<String, Info> infoMap = {};
-  int? birthYear;
+  String? birthYear;
+  String? birthMonth;
+  String? birthDate;
 
   createMemo({
-    required int birthyyyy,
-    required int birthmm,
-    required int birthdd,
+    required String birthyyyy,
+    required String birthmm,
+    required String birthdd,
   }) {
     String key = '$birthyyyy-$birthmm-$birthdd';
     Info info = Info(
@@ -18,7 +20,10 @@ class InfoService extends ChangeNotifier {
     );
 
     infoMap[key] = info;
-    birthYear = birthyyyy; // 출생 연도를 별도로 설정
+    birthYear = birthyyyy;
+    birthMonth = birthmm;
+    birthDate = birthdd;
+    // 출생 연도를 별도로 설정
     notifyListeners();
     notifyListeners();
   }

@@ -42,13 +42,17 @@ class ResumeForm extends StatefulWidget {
 }
 
 class _ResumeFormState extends State<ResumeForm> {
-  final TextEditingController _birthController = TextEditingController();
+  final TextEditingController birthyearController = TextEditingController();
+  final TextEditingController birthmonthController = TextEditingController();
+  final TextEditingController birthdateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Consumer<InfoService>(builder: (context, infoService, child) {
       Map<String, Info> infoMap = infoService.infoMap;
-      int? birthYear = infoService.birthYear;
+      String? birthYear = infoService.birthYear;
+      String? birthMonth = infoService.birthYear;
+      String? birthDate = infoService.birthYear;
 
       return Scaffold(
         appBar: AppBar(
@@ -62,16 +66,17 @@ class _ResumeFormState extends State<ResumeForm> {
           ),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
               child: Row(
                 children: [
                   TextField(
-                    controller: _birthController,
+                    controller: birthyearController,
                     onChanged: (value) {},
                     decoration: InputDecoration(
-                      labelText: infoService.birthYear,
+                      labelText: 'yyyy',
                       labelStyle: TextStyle(
                         color: Colors.grey,
                       ),
