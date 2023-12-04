@@ -74,6 +74,11 @@ class _ResumeFormState extends State<ResumeForm> {
               children: [
                 Flexible(
                   child: TextField(
+                    controller: nameController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'[a-zA-Z]')), // 텍스트만 허용
+                    ],
                     decoration: InputDecoration(
                       labelText: name != null && name.isNotEmpty ? name : '홍길동',
                     ),
@@ -101,11 +106,12 @@ class _ResumeFormState extends State<ResumeForm> {
               children: [
                 Flexible(
                   child: TextField(
+                    keyboardType: TextInputType.number,
+                    controller: birthyearController,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(4),
                     ],
-                    controller: birthyearController,
                     //onChanged: (value) {},
                     decoration: InputDecoration(
                       labelText: birthYear != null && birthYear.isNotEmpty
@@ -124,6 +130,7 @@ class _ResumeFormState extends State<ResumeForm> {
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(2),
                     ],
+                    keyboardType: TextInputType.number,
                     controller: birthmonthController,
                     //onChanged: (value) {},
                     decoration: InputDecoration(
@@ -143,6 +150,7 @@ class _ResumeFormState extends State<ResumeForm> {
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(2),
                     ],
+                    keyboardType: TextInputType.number,
                     controller: birthdateController,
                     //onChanged: (value) {},
                     decoration: InputDecoration(
