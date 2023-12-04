@@ -6,24 +6,27 @@ class InfoService extends ChangeNotifier {
   String? birthYear;
   String? birthMonth;
   String? birthDate;
+  String? name;
 
-  createMemo({
+  createInfo({
     required String birthyyyy,
     required String birthmm,
     required String birthdd,
+    required String name,
   }) {
-    String key = '$birthyyyy-$birthmm-$birthdd';
+    String key = '$birthyyyy-$birthmm-$birthdd-$name';
     Info info = Info(
       birthyyyy: birthyyyy,
       birthmm: birthmm,
       birthdd: birthdd,
+      name: name,
     );
 
     infoMap[key] = info;
     birthYear = birthyyyy;
     birthMonth = birthmm;
     birthDate = birthdd;
-    notifyListeners();
+    name = name;
     notifyListeners();
   }
 

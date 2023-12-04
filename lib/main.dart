@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'info.dart';
+import 'package:flutter/services.dart';
+//import 'info.dart';
 import 'info_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,14 +46,16 @@ class _ResumeFormState extends State<ResumeForm> {
   final TextEditingController birthyearController = TextEditingController();
   final TextEditingController birthmonthController = TextEditingController();
   final TextEditingController birthdateController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Consumer<InfoService>(builder: (context, infoService, child) {
-      Map<String, Info> infoMap = infoService.infoMap;
+      //Map<String, Info> infoMap = infoService.infoMap;
       String? birthYear = infoService.birthYear;
       String? birthMonth = infoService.birthMonth;
       String? birthDate = infoService.birthDate;
+      String? name = infoService.name;
 
       return Scaffold(
         appBar: AppBar(
@@ -65,21 +68,112 @@ class _ResumeFormState extends State<ResumeForm> {
             ),
           ),
         ),
-        body: Row(
+        body: Column(
           children: [
-            Flexible(
-              child: TextField(
-                controller: birthyearController,
-                //onChanged: (value) {},
-                decoration: InputDecoration(
-                  labelText: 'yyyy',
-                  labelStyle: TextStyle(
-                    color: Colors.grey,
+            Row(
+              children: [
+                Flexible(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: name != null && name.isNotEmpty ? name : '홍길동',
+                    ),
                   ),
                 ),
-              ),
+                TextButton(
+                  onPressed: () {
+                    String birthYear = birthyearController.text;
+                    String birthMonth = birthmonthController.text;
+                    String birthDate = birthdateController.text;
+                    String name = nameController.text;
+
+                    Provider.of<InfoService>(context, listen: false).createInfo(
+                      birthyyyy: birthYear,
+                      birthmm: birthMonth,
+                      birthdd: birthDate,
+                      name: name,
+                    );
+                  },
+                  child: Text("저장"),
+                )
+              ],
             ),
-            Text('년')
+            Row(
+              children: [
+                Flexible(
+                  child: TextField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(4),
+                    ],
+                    controller: birthyearController,
+                    //onChanged: (value) {},
+                    decoration: InputDecoration(
+                      labelText: birthYear != null && birthYear.isNotEmpty
+                          ? birthYear
+                          : 'YYYY',
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                Text('년'),
+                Flexible(
+                  child: TextField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(2),
+                    ],
+                    controller: birthmonthController,
+                    //onChanged: (value) {},
+                    decoration: InputDecoration(
+                      labelText: birthMonth != null && birthMonth.isNotEmpty
+                          ? birthMonth
+                          : 'MM',
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                Text('월'),
+                Flexible(
+                  child: TextField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(2),
+                    ],
+                    controller: birthdateController,
+                    //onChanged: (value) {},
+                    decoration: InputDecoration(
+                      labelText: birthDate != null && birthDate.isNotEmpty
+                          ? birthDate
+                          : 'DD',
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                Text('일'),
+                TextButton(
+                  onPressed: () {
+                    String birthYear = birthyearController.text;
+                    String birthMonth = birthmonthController.text;
+                    String birthDate = birthdateController.text;
+                    String name = nameController.text;
+
+                    Provider.of<InfoService>(context, listen: false).createInfo(
+                      birthyyyy: birthYear,
+                      birthmm: birthMonth,
+                      birthdd: birthDate,
+                      name: name,
+                    );
+                  },
+                  child: Text("저장"),
+                )
+              ],
+            ),
           ],
         ),
       );
