@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'info.dart';
+import 'certification_entry.dart';
 import 'info_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -182,6 +183,17 @@ class _ResumeFormState extends State<ResumeForm> {
                 )
               ],
             ),
+            // 자격증 섹션
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CertificationEntryPage(),
+                    ),
+                  );
+                },
+                child: Text("자격증 추가"))
           ],
         ),
       );
