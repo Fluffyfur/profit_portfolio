@@ -50,7 +50,7 @@ class CertificationEntryPage extends StatelessWidget {
                 ),
               );
             },
-            child: Text('Save'),
+            child: Text('저장'),
           ),
         ],
       ),
