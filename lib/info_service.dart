@@ -7,6 +7,12 @@ class InfoService extends ChangeNotifier {
   String? birthMonth;
   String? birthDate;
   String? name;
+  List<Certification> certifications = []; // 자격증 정보를 담을 리스트 추가
+
+  addCertification(Certification certification) {
+    certifications.add(certification);
+    notifyListeners();
+  }
 
   createInfo({
     required String birthyyyy,
@@ -20,6 +26,7 @@ class InfoService extends ChangeNotifier {
       birthmm: birthmm,
       birthdd: birthdd,
       name: name,
+      certifications: List.from(certifications), // 자격증 정보 복사
     );
 
     infoMap[key] = info;
