@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:profit_portfolio_ver2/info.dart';
 //import 'info.dart';
 import 'certification_entry.dart';
 import 'info_service.dart';
@@ -57,6 +58,8 @@ class _ResumeFormState extends State<ResumeForm> {
       String? birthMonth = infoService.birthMonth;
       String? birthDate = infoService.birthDate;
       String? name = infoService.name;
+      List<Certification> certifications = infoService.certifications;
+      int? certificationcount = certifications.length;
 
       return Scaffold(
         appBar: AppBar(
@@ -70,15 +73,18 @@ class _ResumeFormState extends State<ResumeForm> {
           ),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
+                Text("성명"),
+                SizedBox(width: 15),
                 Flexible(
                   child: TextField(
                     controller: nameController,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
-                          RegExp(r'[a-zA-Z]')), // 텍스트만 허용
+                          RegExp('[ㄱ-ㅎ가-힣]')), // 텍스트만 허용
                     ],
                     decoration: InputDecoration(
                       labelText: name != null && name.isNotEmpty ? name : '홍길동',
@@ -105,6 +111,8 @@ class _ResumeFormState extends State<ResumeForm> {
             ),
             Row(
               children: [
+                Text("생년월일"),
+                SizedBox(width: 15),
                 Flexible(
                   child: TextField(
                     keyboardType: TextInputType.number,
@@ -184,16 +192,40 @@ class _ResumeFormState extends State<ResumeForm> {
               ],
             ),
             // 자격증 섹션
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CertificationEntryPage(),
-                    ),
-                  );
-                },
-                child: Text("자격증 추가"))
+            certifications.isEmpty
+                ? Row(
+                    children: [
+                      Text("자격 항목"),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CertificationEntryPage(),
+                              ),
+                            );
+                          },
+                          child: Text("자격증 추가하기")),
+                    ],
+                  )
+                : Row(
+                    children: [
+                      Text("자격증 등록 완료($certificationcount개)"),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CertificationEntryPage(),
+                              ),
+                            );
+                          },
+                          child: Text("수정하기"))
+                    ],
+                  )
           ],
         ),
       );
