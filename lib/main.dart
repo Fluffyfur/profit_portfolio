@@ -72,161 +72,188 @@ class _ResumeFormState extends State<ResumeForm> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("성명"),
-                SizedBox(width: 15),
-                Flexible(
-                  child: TextField(
-                    controller: nameController,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp('[ㄱ-ㅎ가-힣]')), // 텍스트만 허용
-                    ],
-                    decoration: InputDecoration(
-                      labelText: name != null && name.isNotEmpty ? name : '홍길동',
+                Row(
+                  children: [
+                    Container(width: 70, child: Text("성명")),
+                    SizedBox(width: 15),
+                    Flexible(
+                      child: TextField(
+                        controller: nameController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp('[ㄱ-ㅎ가-힣]')), // 텍스트만 허용
+                        ],
+                        decoration: InputDecoration(
+                          labelText:
+                              name != null && name.isNotEmpty ? name : '홍길동',
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    String birthYear = birthyearController.text;
-                    String birthMonth = birthmonthController.text;
-                    String birthDate = birthdateController.text;
-                    String name = nameController.text;
+                    TextButton(
+                      onPressed: () {
+                        String birthYear = birthyearController.text;
+                        String birthMonth = birthmonthController.text;
+                        String birthDate = birthdateController.text;
+                        String name = nameController.text;
 
-                    Provider.of<InfoService>(context, listen: false).createInfo(
-                      birthyyyy: birthYear,
-                      birthmm: birthMonth,
-                      birthdd: birthDate,
-                      name: name,
-                    );
-                  },
-                  child: Text("저장"),
-                )
+                        Provider.of<InfoService>(context, listen: false)
+                            .createInfo(
+                          birthyyyy: birthYear,
+                          birthmm: birthMonth,
+                          birthdd: birthDate,
+                          name: name,
+                        );
+                      },
+                      child: Text("저장"),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(width: 70, child: Text("생년월일")),
+                    SizedBox(width: 15),
+                    Flexible(
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        controller: birthyearController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(4),
+                        ],
+                        //onChanged: (value) {},
+                        decoration: InputDecoration(
+                          labelText: birthYear != null && birthYear.isNotEmpty
+                              ? birthYear
+                              : 'YYYY',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text('년'),
+                    Flexible(
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(2),
+                        ],
+                        keyboardType: TextInputType.number,
+                        controller: birthmonthController,
+                        //onChanged: (value) {},
+                        decoration: InputDecoration(
+                          labelText: birthMonth != null && birthMonth.isNotEmpty
+                              ? birthMonth
+                              : 'MM',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text('월'),
+                    Flexible(
+                      child: TextField(
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(2),
+                        ],
+                        keyboardType: TextInputType.number,
+                        controller: birthdateController,
+                        //onChanged: (value) {},
+                        decoration: InputDecoration(
+                          labelText: birthDate != null && birthDate.isNotEmpty
+                              ? birthDate
+                              : 'DD',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text('일'),
+                    TextButton(
+                      onPressed: () {
+                        String birthYear = birthyearController.text;
+                        String birthMonth = birthmonthController.text;
+                        String birthDate = birthdateController.text;
+                        String name = nameController.text;
+
+                        Provider.of<InfoService>(context, listen: false)
+                            .createInfo(
+                          birthyyyy: birthYear,
+                          birthmm: birthMonth,
+                          birthdd: birthDate,
+                          name: name,
+                        );
+                      },
+                      child: Text("저장"),
+                    )
+                  ],
+                ),
+                // 자격증 섹션
+                certifications.isEmpty
+                    ? Container(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Container(width: 70, child: Text("자격 항목")),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Spacer(),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CertificationEntryPage(),
+                                    ),
+                                  );
+                                },
+                                child: Text("자격증 추가하기")),
+                            Spacer(),
+                          ],
+                        ),
+                      )
+                    : Container(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Container(width: 70, child: Text("자격 항목")),
+                            Spacer(),
+                            Text("자격증 등록 완료($certificationcount개)"),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CertificationEntryPage(),
+                                    ),
+                                  );
+                                },
+                                child: Text("수정하기")),
+                            Spacer(),
+                          ],
+                        ),
+                      )
               ],
             ),
-            Row(
-              children: [
-                Text("생년월일"),
-                SizedBox(width: 15),
-                Flexible(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: birthyearController,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(4),
-                    ],
-                    //onChanged: (value) {},
-                    decoration: InputDecoration(
-                      labelText: birthYear != null && birthYear.isNotEmpty
-                          ? birthYear
-                          : 'YYYY',
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Text('년'),
-                Flexible(
-                  child: TextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(2),
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: birthmonthController,
-                    //onChanged: (value) {},
-                    decoration: InputDecoration(
-                      labelText: birthMonth != null && birthMonth.isNotEmpty
-                          ? birthMonth
-                          : 'MM',
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Text('월'),
-                Flexible(
-                  child: TextField(
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(2),
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: birthdateController,
-                    //onChanged: (value) {},
-                    decoration: InputDecoration(
-                      labelText: birthDate != null && birthDate.isNotEmpty
-                          ? birthDate
-                          : 'DD',
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Text('일'),
-                TextButton(
-                  onPressed: () {
-                    String birthYear = birthyearController.text;
-                    String birthMonth = birthmonthController.text;
-                    String birthDate = birthdateController.text;
-                    String name = nameController.text;
-
-                    Provider.of<InfoService>(context, listen: false).createInfo(
-                      birthyyyy: birthYear,
-                      birthmm: birthMonth,
-                      birthdd: birthDate,
-                      name: name,
-                    );
-                  },
-                  child: Text("저장"),
-                )
-              ],
-            ),
-            // 자격증 섹션
-            certifications.isEmpty
-                ? Row(
-                    children: [
-                      Text("자격 항목"),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CertificationEntryPage(),
-                              ),
-                            );
-                          },
-                          child: Text("자격증 추가하기")),
-                    ],
-                  )
-                : Row(
-                    children: [
-                      Text("자격증 등록 완료($certificationcount개)"),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CertificationEntryPage(),
-                              ),
-                            );
-                          },
-                          child: Text("수정하기"))
-                    ],
-                  )
-          ],
+          ),
         ),
       );
     });

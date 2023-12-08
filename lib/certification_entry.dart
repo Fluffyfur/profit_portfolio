@@ -3,6 +3,7 @@ import 'package:profit_portfolio_ver2/info_service.dart';
 import 'package:provider/provider.dart';
 
 import 'info.dart';
+import 'main.dart';
 
 class CertificationEntryPage extends StatefulWidget {
   @override
@@ -165,7 +166,16 @@ class _CertificationEntryPageState extends State<CertificationEntryPage> {
                       ),
                     ],
                   ),
-                  TextButton(onPressed: () {}, child: Text("저장"))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResumeForm(),
+                          ),
+                        );
+                      },
+                      child: Text("저장"))
                 ],
               ),
       );
