@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:profit_portfolio_ver2/info_service.dart';
 import 'package:provider/provider.dart';
 
@@ -44,11 +45,20 @@ class _CertificationEntryPageState extends State<CertificationEntryPage> {
                   ),
                   Flexible(
                     child: TextField(
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(10),
+                      ],
+                      keyboardType: TextInputType.number,
                       controller: acquisitionDateController,
                       decoration: InputDecoration(
                         labelText: '취득일자',
                         labelStyle: TextStyle(
                           color: Colors.grey,
+                        ),
+                        hintText: 'YYYY.MM.DD',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
                       ),
                     ),
@@ -128,10 +138,18 @@ class _CertificationEntryPageState extends State<CertificationEntryPage> {
                       ),
                       Flexible(
                         child: TextField(
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                          ],
+                          keyboardType: TextInputType.number,
                           controller: acquisitionDateController,
                           decoration: InputDecoration(
                             labelText: '취득일자',
                             labelStyle: TextStyle(
+                              color: Colors.grey,
+                            ),
+                            hintText: 'YYYY.MM.DD',
+                            hintStyle: TextStyle(
                               color: Colors.grey,
                             ),
                           ),
