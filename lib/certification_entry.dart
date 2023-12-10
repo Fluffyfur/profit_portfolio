@@ -105,13 +105,20 @@ class _CertificationEntryPageState extends State<CertificationEntryPage> {
                           width: double.infinity,
                           child: Row(
                             children: [
-                              Text(
-                                cert.certificationName,
-                              ),
+                              Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  child: Text(cert.certificationName)),
                               Spacer(),
-                              Text(cert.acquisitionDate),
+                              Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
+                                  child: Text(cert.acquisitionDate)),
                               Spacer(),
-                              Text(cert.organizer),
+                              Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  child: Text(cert.organizer)),
                               Spacer(),
                               ElevatedButton(
                                 onPressed: () {},

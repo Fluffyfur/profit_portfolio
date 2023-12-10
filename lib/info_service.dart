@@ -7,6 +7,7 @@ class InfoService extends ChangeNotifier {
   String? birthMonth;
   String? birthDate;
   String? name;
+  String? gender;
   List<Certification> certifications = []; // 자격증 정보를 담을 리스트 추가
 
   addCertification(Certification certification) {
@@ -19,6 +20,7 @@ class InfoService extends ChangeNotifier {
     required String birthmm,
     required String birthdd,
     required String name,
+    required String gender,
   }) {
     String key = '$birthyyyy-$birthmm-$birthdd-$name';
     Info info = Info(
@@ -26,6 +28,7 @@ class InfoService extends ChangeNotifier {
       birthmm: birthmm,
       birthdd: birthdd,
       name: name,
+      gender: gender,
       certifications: List.from(certifications), // 자격증 정보 복사
     );
 
@@ -34,6 +37,7 @@ class InfoService extends ChangeNotifier {
     birthMonth = birthmm;
     birthDate = birthdd;
     name = name;
+    gender = gender;
     notifyListeners();
   }
 

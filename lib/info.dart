@@ -5,6 +5,7 @@ class Info {
     required this.birthdd,
     required this.name,
     required this.certifications,
+    required this.gender,
   });
 
   String? birthyyyy;
@@ -12,6 +13,7 @@ class Info {
   String? birthdd;
   String? name;
   List<Certification> certifications;
+  String? gender;
 
   Map<String, dynamic> toMap() {
     return {
@@ -21,6 +23,7 @@ class Info {
       'name': name,
       'certifications':
           certifications.map((certification) => certification.toMap()).toList(),
+      'gender': gender,
     };
   }
 
@@ -30,6 +33,7 @@ class Info {
       birthmm: map['birthmm'],
       birthdd: map['birthdd'],
       name: map['name'],
+      gender: map['gender'],
       certifications: List<Certification>.from(
         (map['certifications'] as List<dynamic>).map(
           (certificationMap) => Certification.fromMap(certificationMap),

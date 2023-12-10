@@ -49,6 +49,7 @@ class _ResumeFormState extends State<ResumeForm> {
   final TextEditingController birthmonthController = TextEditingController();
   final TextEditingController birthdateController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,7 @@ class _ResumeFormState extends State<ResumeForm> {
       String? birthMonth = infoService.birthMonth;
       String? birthDate = infoService.birthDate;
       String? name = infoService.name;
+      String? gender = infoService.gender;
       List<Certification> certifications = infoService.certifications;
       int? certificationcount = certifications.length;
 
@@ -103,6 +105,7 @@ class _ResumeFormState extends State<ResumeForm> {
                         String birthMonth = birthmonthController.text;
                         String birthDate = birthdateController.text;
                         String name = nameController.text;
+                        String gender = genderController.text;
 
                         Provider.of<InfoService>(context, listen: false)
                             .createInfo(
@@ -110,10 +113,16 @@ class _ResumeFormState extends State<ResumeForm> {
                           birthmm: birthMonth,
                           birthdd: birthDate,
                           name: name,
+                          gender: gender,
                         );
                       },
                       child: Text("저장"),
                     )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("성별"),
                   ],
                 ),
                 Row(
@@ -190,6 +199,7 @@ class _ResumeFormState extends State<ResumeForm> {
                         String birthMonth = birthmonthController.text;
                         String birthDate = birthdateController.text;
                         String name = nameController.text;
+                        String gender = genderController.text;
 
                         Provider.of<InfoService>(context, listen: false)
                             .createInfo(
@@ -197,6 +207,7 @@ class _ResumeFormState extends State<ResumeForm> {
                           birthmm: birthMonth,
                           birthdd: birthDate,
                           name: name,
+                          gender: gender,
                         );
                       },
                       child: Text("저장"),
